@@ -4,6 +4,12 @@
 #include <iostream>
 #include <string>
 
+#include "plane.h"
+#include "ship.h"
+#include "car.h"
+#include "ferry.h"
+#include "rail.h"
+
 // Include files of your path classes will need to be added here
 
 Point read_coordinates(int argc, char *argv[], int i_option) {
@@ -19,8 +25,8 @@ int main(int argc, char *argv[]) {
     const int nx = 256;
     const int ny = 256;
 
-    std::string terrain_filename;
 
+    std::string terrain_filename;
     // Load the terrain map
 
     if (argc > 1) terrain_filename = argv[1];
@@ -34,6 +40,11 @@ int main(int argc, char *argv[]) {
     Point finish = read_coordinates(argc,argv,4);
 
     std::vector<Path*> paths = { //new YourPath(m,"MyPathName",start,finish), ...
+        new plane(m, "PlanePath", start, finish),
+        new ship(m, "ShipPath", start, finish),
+        new car(m, "CarPath", start, finish),
+        new ferry(m, "FerryPath", start, finish),
+        new rail(m, "RailPath", start, finish)
         // Here add the list of dynamically created classes with path finding algorithms
     };
 
